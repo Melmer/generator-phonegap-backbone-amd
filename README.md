@@ -1,6 +1,8 @@
-# generator-phonegap 
+# generator-phonegap-backbone-amd
 
-Yeoman generator for an automated PhoneGap project and build. Uses [grunt-phonegap](https://npmjs.org/package/grunt-phonegap) to automate platform builds and performs basic optimization tasks relevant for phonegap projects. 
+## in progress
+
+Yeoman generator for an automated PhoneGap project with a Backbone.js AMD structure and build. Uses [grunt-phonegap](https://npmjs.org/package/grunt-phonegap) to automate platform builds and performs basic optimization tasks relevant for phonegap projects. 
 
 ## Installation
 
