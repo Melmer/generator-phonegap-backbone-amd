@@ -2,6 +2,13 @@
   "name": "<%= _.slugify(projectName) %>",
   "version": "0.0.0",
   "dependencies": {
+  	"jquery": "latest",
+    "requirejs": "latest",
+    "requirejs-text": "latest",
+    "underscore": "latest",
+    "backbone": "latest",
+    "backbone.subroute": "latest",
+    "fastclick": "latest"
   }
 }
 

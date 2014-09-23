@@ -1,16 +1,16 @@
 {
-  "name": "generator-phonegap",
+  "name": "generator-phonegap-backbone-amd",
   "version": "0.1.2",
-  "description": "PhoneGap project generator",
+  "description": "PhoneGap Backbone.js AMD project generator",
   "keywords": [
-    "yeoman-generator", "phonegap", "wp8", "ios", "android"
+    "yeoman-generator", "phonegap", "backbone", "amd", "wp8", "ios", "android"
   ],
-  "homepage": "https://github.com/hypermurea/generator-phonegap",
-  "bugs": "https://github.com/hypermurea/generator-phonegap/issues",
+  "homepage": "https://github.com/Melmer/generator-phonegap-backbone-amd",
+  "bugs": "https://github.com/Melmer/generator-phonegap-backbone-amd/issues",
   "author": {
-    "name": "Jaakko Santala",
-    "email": "jaakko@hypermurea.com",
-    "url": "https://github.com/hypermurea"
+    "name": "Melle Heeres Santala",
+    "email": "melle@heer.es",
+    "url": "https://github.com/Melmer"
   },
   "main": "app/index.js",
   "repository": {
@@ -23,7 +23,7 @@
   "dependencies": {
     "yeoman-generator": "~0.13.0",
     "phonegap": "~3.3.0",
-	"extended-fs": "~0.3.1"
+	  "extended-fs": "~0.3.1"
   },
   "devDependencies": {
     "mocha": "~1.12.0"

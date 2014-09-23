@@ -17,8 +17,45 @@ module.exports = function (grunt) {
 		// configurable paths
 		yeoman: {
 			app: 'app',
-			dist: 'dist'
+			dist: 'dist',
+
+            phonegap: 'phonegap',
+
+            ios: 'ios',
+            android: 'android',
+
+            icons: '<%%= yeoman.app %>/icons/',
+            icon_ios: '<%%= yeoman.icons %>/<%%= yeoman.ios %>',
+            icon_android: '<%%= yeoman.icons %>/<%%= yeoman.android %>'
 		},
+
+        // icon config
+        launch: <%=launchImages%>,
+        icons: {
+
+            android: {
+                ldpi: '<%%= yeoman.android %>/drawable-ldpi/ic_launcher.png',
+                mdpi: '<%%= yeoman.android %>/drawable-mdpi/ic_launcher.png',
+                hdpi: '<%%= yeoman.android %>/drawable-hdpi/ic_launcher.png',
+                xhdpi: '<%%= yeoman.android %>/drawable-xhdpi/ic_launcher.png',
+                xxhdpi: '<%%= yeoman.android %>/drawable-xxhdpi/ic_launcher.png'
+            },
+
+            ios: {
+                icon29: '<%%= yeoman.ios %>/icon-small.png',
+                icon29x2: '<%%= yeoman.ios %>/icon-small@2x.png',
+                icon40: '<%%= yeoman.ios %>/icon-40.png',
+                icon40x2: '<%%= yeoman.ios %>/icon-40@2x.png',
+                icon57: '<%%= yeoman.ios %>/icon-57.png',
+                icon57x2: '<%%= yeoman.ios %>/icon-57@2x.png',
+                icon60x2: '<%%= yeoman.ios %>/icon-60@2x.png',
+                icon72: '<%%= yeoman.ios %>/icon-72.png',
+                icon72x2: '<%%= yeoman.ios %>/icon-72@2x.png',
+                icon76: '<%%= yeoman.ios %>/icon-76.png',
+                icon76x2: '<%%= yeoman.ios %>/icon-76@2x.png'
+            }
+
+        },
 
 		phonegap: {
 			config: {
@@ -28,13 +65,163 @@ module.exports = function (grunt) {
 				path: 'phonegap',
 				plugins: [],
 				platforms: <%=buildForPlatforms%>,
-				verbose: false
+				verbose: false,
+
+                // Set an app icon at various sizes (optional)
+                icons: {
+                    android: {
+                        ldpi: '<%%= yeoman.icons_android %>/<%%= icons.android.ldpi %>',
+                        mdpi: '<%%= yeoman.icons_android %>/<%%= icons.android.mdpi %>',
+                        hdpi: '<%%= yeoman.icons_android %>/<%%= icons.android.hdpi %>',
+                        xhdpi: '<%%= yeoman.icons_android %>/<%%= icons.android.xhdpi %>',
+                        xxhdpi: '<%%= yeoman.icons_android %>/<%%= icons.android.xxhdpi %>'
+                    },
+                    ios: {
+                        icon29: '<%%= yeoman.icons %>/<%%= icons.ios.icon29 %>',
+                        icon29x2: '<%%= yeoman.icons %>/<%%= icons.ios.icon29x2 %>',
+                        icon40: '<%%= yeoman.icons %>/<%%= icons.ios.icon40 %>',
+                        icon40x2: '<%%= yeoman.icons %>/<%%= icons.ios.icon40x2 %>',
+                        icon57: '<%%= yeoman.icons %>/<%%= icons.ios.icon57 %>',
+                        icon57x2: '<%%= yeoman.icons %>/<%%= icons.ios.icon57x2 %>',
+                        icon60x2: '<%%= yeoman.icons %>/<%%= icons.ios.icon60x2 %>',
+                        icon72: '<%%= yeoman.icons %>/<%%= icons.ios.icon72 %>',
+                        icon72x2: '<%%= yeoman.icons %>/<%%= icons.ios.icon72x2 %>',
+                        icon76: '<%%= yeoman.icons %>/<%%= icons.ios.icon76 %>',
+                        icon76x2: '<%%= yeoman.icons %>/<%%= icons.ios.icon76x2 %>'
+                    }
+                },
+
+                screens: {
+                    android: {
+                        ldpi: '<%%= yeoman.app %>/platforms/android/res/drawable-port-ldpi/screen.png',
+                        mdpi: '<%%= yeoman.app %>/platforms/android/res/drawable-port-mdpi/screen.png',
+                        hdpi: '<%%= yeoman.app %>/platforms/android/res/drawable-port-hdpi/screen.png',
+                        xhdpi: '<%%= yeoman.app %>/platforms/android/res/drawable-port-xhdpi/screen.png'
+                    },
+                    ios: {
+                        // iphone portrait
+                        iphonePortraitx2: '<%%= yeoman.app %>/platforms/ios/Test/Resources/splash/Default@2x~iphone.png',
+                        iphone568hx2: '<%%= yeoman.app %>/platforms/ios/Test/Resources/splash/Default-568h@2x~iphone.png'
+                    }
+                }
 			}
 		},
 
+        phonegapsplash: {
+            launch: {
+              // Source file: the PNG.
+              src: "<%%= yeoman.app %>/svg/base-launch.png",
+              // Destination directory where are stored all splashscreens
+              dest: "<%%= yeoman.app %>/",
+              // Optionnal, it produces splashscreen and layout for all phonegap targets if not specified
+              options: {
+                // A list of layouts, it produces landscape and portrait if not specified
+                layouts: <%=buildForLayouts%>,
+                // A  list of phone targets, it produces android, bada, blackberry, ios, webos, windows-phone if not specified
+                profiles: <%=buildForPlatforms%>
+              }
+            },
+        },    
+
+        vector2raster: {   // Task
+            icons: {  // Target
+                files:[
+                    {
+                        src: "<%%= yeoman.app %>/svg/base-icon.svg",
+                        dest: "<%%= yeoman.app %>/icons/"
+                    }
+                ],
+                options:{   // Options
+                    dest:[
+
+                        //android icons
+                        {
+                            name: "<%%= icons.android.ldpi %>",
+                            size: { width: 36, height: 36 }
+                        },
+                        {
+                            name: "<%%= icons.android.mdpi %>",
+                            size: { width: 48, height: 48 }
+                        },
+                        {
+                            name: "<%%= icons.android.hdpi %>",
+                            size: { width: 72, height: 72 }
+                        },
+                        {
+                            name: "<%%= icons.android.xhdpi %>",
+                            size: { width: 96, height: 96 }
+                        },
+                        {
+                            name: "<%%= icons.android.xxhdpi %>",
+                            size: { width: 144, height: 144 }
+                        },
+
+                        //iOS icons
+                        {
+                            name: "<%%= icons.ios.icon29 %>",
+                            size: { width: 29, height: 29 }
+                        },
+                        {
+                            name: "<%%= icons.ios.icon29x2 %>",
+                            size: { width: 58, height: 58 }
+                        },
+
+                        {
+                            name: "<%%= icons.ios.icon40 %>",
+                            size: { width: 40, height: 40 }
+                        },
+                        {
+                            name: "<%%= icons.ios.icon40x2 %>",
+                            size: { width: 80, height: 80 }
+                        },
+
+                        {
+                            name: "<%%= icons.ios.icon57 %>",
+                            size: { width: 57, height: 57 }
+                        },
+                        {
+                            name: "<%%= icons.ios.icon57x2 %>",
+                            size: { width: 114, height: 114 }
+                        },
+
+                        {
+                            name: "<%%= icons.ios.icon60x2 %>",
+                            size: { width: 120, height: 120 }
+                        },
+                        {
+                            name: "<%%= icons.ios.icon72 %>",
+                                size: { width: 72, height: 72 }
+                        },
+                        {
+                            name: "<%%= icons.ios.icon72x2 %>",
+                            size: { width: 144, height: 144 }
+                        },
+                        {
+                            name: "<%%= icons.ios.icon76 %>",
+                            size: { width: 76, height: 76 }
+                        },
+                        {
+                            name: "<%%= icons.ios.icon76x2 %>",
+                            size: { width: 152, height: 152 }
+                        },
+                        /* extra itunes art work*/
+                        {
+                            name: "<%%= yeoman.ios %>/iTunesArtwork.png",
+                            size: { width: 512, height: 512 }
+                        },
+                        {
+                            name: "<%%= yeoman.ios %>/iTunesArtwork@2x.png",
+                            size: { width: 1024, height: 1024 }
+                        }
+                    ]
+                }
+            }
+        },
+
+
         watch: {
             compass: {
-                files: ['<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+                files: ['<%%= yeoman.app %>/sass/{,*/}*.{scss,sass}'],
                 tasks: ['compass:server', 'autoprefixer']
             },
             styles: {
@@ -133,6 +320,22 @@ module.exports = function (grunt) {
                 }
             }
         },<% } %>
+        compass: {
+            dist: {
+                options: {
+                    sassDir: '<%%= yeoman.app %>/sass',
+                    cssDir: '<%%= yeoman.app %>/styles',
+                    imagesDir: '<%%= yeoman.app %>/images'
+                }
+            },
+            server: {
+                options: {
+                    sassDir: '<%%= yeoman.app %>/sass',
+                    cssDir: '<%%= yeoman.app %>/styles',
+                    imagesDir: '<%%= yeoman.app %>/images'
+                }
+            }
+        },
         autoprefixer: {
             options: {
                 browsers: ['last 1 version']
@@ -163,6 +366,18 @@ module.exports = function (grunt) {
         /*uglify: {
             dist: {}
         },*/
+
+         requirejs: {
+            compile: {
+                options: {
+                    name: 'main',
+                    baseUrl: '<%%= yeoman.app %>/scripts',
+                    mainConfigFile: '<%%= yeoman.app %>/scripts/main.js',
+                    out: '<%%= yeoman.dist %>/scripts/main.js'
+                }
+            }
+        },
+
         rev: {
             dist: {
                 files: {
@@ -258,7 +473,11 @@ module.exports = function (grunt) {
                         '.htaccess',
                         'images/{,*/}*.{webp,gif}',
 						'res/**',
-                        'styles/fonts/{,*/}*.*'
+                        'styles/fonts/{,*/}*.*',
+                        'launch/**',
+                        'icons/**',
+                        'fonts/{,*/}*.*',
+                        'bower_components/requirejs/require.js'
                     ]
                 }]
             },
@@ -312,6 +531,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'useminPrepare',
+        'requirejs',
         'concurrent:dist',
         'autoprefixer',
         'concat',
@@ -323,6 +543,8 @@ module.exports = function (grunt) {
     ]);
 
 	grunt.registerTask('platform-build', [
+        'vector2raster',
+        'phonegapsplash',
 		'default',
 		'phonegap:build'
 	]);

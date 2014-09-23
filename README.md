@@ -31,7 +31,7 @@ $ mkdir my-phonegap-project && cd $_
 Initiate the generator:
 
 ```
-$ yo phonegap
+$ yo phonegap-backbone-amd
 ```
 
 It will prompt you for project name, package and the mobile platforms you want to build your project by default. 
@@ -46,8 +46,19 @@ It will prompt you for project name, package and the mobile platforms you want t
 	.bowerrc
 	app/												Application sources
 		index.html										Auto-generated application entry html
+		icons/
+		fonts/
+		sass/
+		svg/
 		styles/											
 		scripts/
+			adapters/
+			collections/
+			models/
+			subrouters/
+			templates/
+			vendor/
+			views/
 		images/
 		res/										
 	dist/												Processed source data from the app folder

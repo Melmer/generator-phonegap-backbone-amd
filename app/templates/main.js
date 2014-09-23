@@ -8,8 +8,8 @@ require.config({
         backboneSubroute: '../bower_components/backbone.subroute/backbone.subroute',
         underscore: '../bower_components/underscore/underscore',
         fastclick: '../bower_components/fastclick/lib/fastclick'
+
     },
-    
     shim: {
         underscore: {
             exports: '_'
